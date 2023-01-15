@@ -8,7 +8,8 @@
  *   }
  * }
  */
- 
+//TC: O(n); SC: O(n) 
+
 public class Solution {
   public List<Integer> inOrder(TreeNode root) {
     // Write your solution here
