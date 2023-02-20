@@ -55,10 +55,6 @@ class Solution {
 }
 
 257. Binary Tree Paths
-Easy
-5.4K
-236
-Companies
 Given the root of a binary tree, return all root-to-leaf paths in any order.
 
 A leaf is a node with no children.
