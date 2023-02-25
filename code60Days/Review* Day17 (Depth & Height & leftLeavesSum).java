@@ -167,15 +167,17 @@ Output: 0
 class Solution {
     public int sumOfLeftLeaves(TreeNode root) {
         if(root == null) return 0;
-        int leftValue = sumOfLeftLeaves(root.left);
-        int rightValue = sumOfLeftLeaves(root.right);
-
-        int mid = 0;
-        if(root.left != null && root.left.left == null && root.left.right == null){
-            mid = root.left.val;
+        if(root.left == null && root.right == null){
+            return 0;
         }
-        int sum = mid + leftValue + rightValue;
+        //postOrder Traversal
+        int leftValue = sumOfLeftLeaves(root.left);
+        if(root.left != null && root.left.left == null && root.left.right == null){
+            leftValue = root.left.val;
+        }
+        //go to traversal right side
+        int rightValue = sumOfLeftLeaves(root.right);
+       
+        int sum = leftValue + rightValue;
         return sum;
     }
-}
-//  还不太明白sum 明天复习一下
