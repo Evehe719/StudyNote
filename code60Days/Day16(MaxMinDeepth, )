@@ -1,0 +1,97 @@
+104. Maximum Depth of Binary Tree
+
+class Solution2 {
+    // 定义：输入一个节点，返回以该节点为根的二叉树的最大深度
+    public int maxDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leftMax = maxDepth(root.left);
+        int rightMax = maxDepth(root.right);
+        // 根据左右子树的最大深度推出原二叉树的最大深度
+        return 1 + Math.max(leftMax, rightMax);
+    }
+}
+
+111. Minimum Depth of Binary Tree
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root == null) return 0;
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        if(root.left == null){
+            return 1 + right;
+        }if(root.right == null){
+            return 1 + left;
+        }
+        //left and right all not null;
+        return Math.min(left, right) + 1;
+    }
+}
+
+559. Maximum Depth of N-ary Tree
+Easy
+2.4K
+79
+Companies
+Given a n-ary tree, find its maximum depth.
+
+The maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+Nary-Tree input serialization is represented in their level order traversal, each group of children is separated by the null value (See examples).
+
+Example 1:
+Input: root = [1,null,3,2,4,null,5,6]
+Output: 3
+Example 2:
+
+Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,12,null,13,null,null,14]
+Output: 5
+
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public List<Node> children;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, List<Node> _children) {
+        val = _val;
+        children = _children;
+    }
+};
+*/
+
+class Solution {
+    //使用dfs法计算树的最大深度，并通过返回0来处理空树的基本情况。
+    public int maxDepth(Node root) {
+        if(root == null) return 0;
+        int subTreeMaxDepth = 0;
+        for(int i = 0; i < root.children.size(); i++) {
+            Node child = root.children.get(i);
+            subTreeMaxDepth = Math.max(subTreeMaxDepth, maxDepth(child));
+        }
+
+        return 1 + subTreeMaxDepth;
+    }
+}
